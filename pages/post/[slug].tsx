@@ -212,8 +212,7 @@ function Post({post}: Props){
 export default Post
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
-  const query =
-  `
+  const query = `
     *[_type == "post" && slug.current == $slug][0]{
       _id,
       _createdAt,
@@ -228,24 +227,24 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       slug,
       body
     }
-  `;
+  `
 
   const post = await sanityClient.fetch(query, {
-    slug: params?.slug
-  });
+    slug: params?.slug,
+  })
 
-  if(!post) {
+  if (!post) {
     return {
-     notFound: true
+      notFound: true,
     }
   }
-   return {
-     props: {
-       post,
-     },
-     revalidate: 10
-   }
+  return {
+    props: {
+      post,
+    },
+    revalidate: 60,
   }
+}
 
 
 export const getStaticPaths: GetStaticPaths = async () => {
