@@ -2,7 +2,7 @@ import * as React from 'react';
 import { sanityClient, urlFor } from '../../sanity';
 import { Post } from '../../types';
 import { GetStaticPaths, GetStaticProps } from 'next'
-import { PortableText } from '@portabletext/react';
+import PortableText from 'react-portable-text';
 import Image from 'next/image';
 import {useForm, SubmitHandler } from 'react-hook-form';
 import { CheckCircleIcon } from '@heroicons/react/solid'
@@ -70,7 +70,7 @@ function Post({post}: Props){
          </p>
        </div>
        <div>
-         <PortableText value={post.body || []} onMissingComponent={false} />
+         <PortableText content={post.body || []}  />
        </div>
      </article>
 
