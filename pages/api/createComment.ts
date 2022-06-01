@@ -5,16 +5,12 @@ import sanityClient from '@sanity/client'
 const config = {
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
   projectId: process.env.NEXT_PUBLIC_SANITY_PROJECT_ID,
-  useCdn: process.env.NODE_ENV === "production",
+  useCdn: process.env.NODE_ENV === 'production',
   token: process.env.SANITY_API_TOKEN,
-  api: "2022-05-01"
+  apiVersion: '2022-05-21'
 }
 
 const client = sanityClient(config)
-
-type Data = {
-  name: string
-}
 
 export default async function createComment(
   req: NextApiRequest,

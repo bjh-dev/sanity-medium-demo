@@ -30,18 +30,18 @@ function Post({post}: Props){
 
    const onSubmit: SubmitHandler<IFormInput> =
     async (data) => {
-      await fetch('http://localhost:3000/api/createComment', {
+      await fetch(`${process.env.NEXT_PUBLIC_SITE_DOMAIN}api/createComment`, {
         method: 'POST',
         body: JSON.stringify(data),
       })
         .then(() => {
           console.log(data)
-          setSubmitted(true);
+          setSubmitted(true)
         })
         .catch((err) => {
           console.log(err)
-          setSubmitted(false);
-        });
+          setSubmitted(false)
+        })
    }
  return (
    <>
